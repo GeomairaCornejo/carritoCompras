@@ -1,4 +1,4 @@
-package com.geomi.carritocompras;
+package com.geomi.carritocompras.fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,16 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.geomi.carritocompras.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CocinaFragment.OnFragmentInteractionListener} interface
+ * {@link DormitorioFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CocinaFragment#newInstance} factory method to
+ * Use the {@link DormitorioFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CocinaFragment extends Fragment {
+public class DormitorioFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +31,7 @@ public class CocinaFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public CocinaFragment() {
+    public DormitorioFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +41,11 @@ public class CocinaFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CocinaFragment.
+     * @return A new instance of fragment DormitorioFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CocinaFragment newInstance(String param1, String param2) {
-        CocinaFragment fragment = new CocinaFragment();
+    public static DormitorioFragment newInstance(String param1, String param2) {
+        DormitorioFragment fragment = new DormitorioFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +66,7 @@ public class CocinaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cocina, container, false);
+        return inflater.inflate(R.layout.fragment_dormitorio, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

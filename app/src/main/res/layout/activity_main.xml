@@ -10,7 +10,7 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:background="@color/colorGeo"
-    tools:context=".MainActivity">
+    tools:context=".actividades.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
