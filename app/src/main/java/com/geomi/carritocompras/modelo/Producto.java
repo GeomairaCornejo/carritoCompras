@@ -6,20 +6,24 @@ public class Producto
     String title;
     String detalle;
     double precio;
-    float voteAverage;
-    float voteCount;
-    String posterPath;
-    String backdropPath;
+    double rating;
+    String image;
 
-    public Producto(int id, String title, String detalle, double precio, float voteAverage, float voteCount, String posterPath, String backdropPath) {
-        this.id = id;
+    public Producto(String id, String title, String detalle, String precio, String rating, String image) {
+        id = id;
         this.title = title;
         this.detalle = detalle;
-        this.precio = precio;
-        this.voteAverage = voteAverage;
-        this.voteCount = voteCount;
-        this.posterPath = posterPath;
-        this.backdropPath = backdropPath;
+        precio = precio;
+        rating = rating;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getId() {
@@ -50,39 +54,16 @@ public class Producto
         return precio;
     }
 
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
     public void setPrecio(double precio) {
         this.precio = precio;
     }
 
-    public float getVoteAverage() {
-        return voteAverage;
-    }
-
-    public void setVoteAverage(float voteAverage) {
-        this.voteAverage = voteAverage;
-    }
-
-    public float getVoteCount() {
-        return voteCount;
-    }
-
-    public void setVoteCount(float voteCount) {
-        this.voteCount = voteCount;
-    }
-
-    public String getPosterPath() {
-        return String.format("", posterPath);
-    }
-
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
-    }
-
-    public String getBackdropPath() {
-        return String.format("", backdropPath);
-    }
-
-    public void setBackdropPath(String backdropPath) {
-        this.backdropPath = backdropPath;
-    }
 }

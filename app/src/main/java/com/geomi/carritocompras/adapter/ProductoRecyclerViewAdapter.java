@@ -17,53 +17,54 @@ import com.geomi.carritocompras.actividades.MainNavigation;
 import com.geomi.carritocompras.modelo.Producto;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ProductoRecyclerViewAdapter extends RecyclerView.Adapter<ProductoRecyclerViewAdapter.ViewHolder> {
-    List<Producto> productos;
-    Context context;
+     ArrayList<Producto> productos;
+    Context acontext;
 
-    public interface ProductoRecyclerViewAdapterListener{
-        void OnItemClicked(Producto producto);
-    }
-    public  ProductoRecyclerViewAdapter(Context context, List<Producto> productos){
+
+    public  ProductoRecyclerViewAdapter(Context context, ArrayList<Producto> productos){
         this.productos = productos;
-        this.context= context;
+        this.acontext= context;
     }
-    private Context getContext(){
-        return context;
+
+    public ProductoRecyclerViewAdapter(ArrayList<Producto> productos) {
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemproducto,parent, false);
+
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemproducto, null,false);
         return new ViewHolder(v);
     }
 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Producto producto = productos.get(position);
-        holder.txtTitulo.setText(producto.getTitle());
-        holder.txtDetalle.setText(producto.getDetalle());
-        holder.txtPrecio.setText((int) producto.getPrecio());
+        final Producto aproducto = productos.get(position);
+        holder.txtViewTittle.setText(aproducto.getTitle());
+        holder.txtViewDescr.setText(aproducto.getDetalle());
+        holder.txtViewPre.setText(String.valueOf(aproducto.getPrecio()));
+        holder.txtRating.setText(String.valueOf(aproducto.getRating()));
 
-        holder.rootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(context instanceof ProductoRecyclerViewAdapterListener ){
-                    ((ProductoRecyclerViewAdapterListener)context).OnItemClicked(producto);
-                }
+        if(aproducto.getImage().isEmpty()){
+            Picasso.with(acontext)
+                    .load(R.mipmap.ic_launcher)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .into(holder.image);
+        }else{
+            Picasso.with(acontext)
+                    .load(aproducto.getImage())
+                    .placeholder(R.drawable.notfound)
+                    .error(R.drawable.notfound)
+                    .into(holder.image);
+        }
 
-            }
-        });
-
-        /*Picasso.with(getContext())
-                .load(producto.getPosterPath())
-                .into(holder.Imagen);*/
     }
 
     @Override
@@ -72,24 +73,22 @@ public class ProductoRecyclerViewAdapter extends RecyclerView.Adapter<ProductoRe
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        View rootView;
-        @BindView(R.id.Imagen)
-        ImageView Imagen;
-        @BindView(R.id.txtTitulo)
-        TextView txtTitulo;
-        @BindView(R.id.txtDetalle)
-        TextView txtDetalle;
-        @BindView(R.id.txtPrecio)
-        TextView txtPrecio;
+       // View rootView;
+        ImageView image;
+        TextView txtViewTittle;
+        TextView txtViewDescr;
+        TextView txtViewPre;
+        TextView txtRating;
 
        ViewHolder( View view) {
             super(view);
-            rootView = view;
-           ButterKnife.bind(this,view);
+            //rootView = view;
+            image = (ImageView) view.findViewById(R.id.Imagen);
+           txtViewTittle= (TextView) view.findViewById(R.id.txtTitulo);
+           txtRating = view.findViewById(R.id.myRatingBar);
+           txtViewDescr= (TextView) view.findViewById(R.id.txtDetalle);
+           txtViewPre= (TextView) view.findViewById(R.id.txtPrecio);
 
         }
-
-
-
     }
 }

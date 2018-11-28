@@ -4,46 +4,40 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.geomi.carritocompras.R;
+import com.geomi.carritocompras.adapter.ProductoRecyclerViewAdapter;
+import com.geomi.carritocompras.modelo.Producto;
 
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CocinaFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CocinaFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CocinaFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     private OnFragmentInteractionListener mListener;
+   //RecyclerView rvCocina;
+
+    ArrayList<Producto> productos;
 
     public CocinaFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CocinaFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+ RecyclerView recyclerCocina;
     public static CocinaFragment newInstance(String param1, String param2) {
         CocinaFragment fragment = new CocinaFragment();
         Bundle args = new Bundle();
@@ -52,24 +46,47 @@ public class CocinaFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+        public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cocina, container, false);
+        View view = inflater.inflate(R.layout.fragment_cocina,container,false);
+        productos = new ArrayList<>();
+        recyclerCocina = (RecyclerView)view.findViewById(R.id.rvCocina);
+        recyclerCocina.setLayoutManager(new LinearLayoutManager(getContext()));
+        initializeData();
+        ProductoRecyclerViewAdapter adapter = new ProductoRecyclerViewAdapter(productos);
+        recyclerCocina.setAdapter(adapter);
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    private void initializeData(){
+        /*productos.add(new Producto("1", "Forro", "Forro navideño para botella de vino","$3.00", "4.3",
+                "https://img.ltwebstatic.com/origin/images2_pi/2018/09/28/15381070421547207879_im_405x552.jpg" ));
+        productos.add(new Producto("2", "Forros", "Forros de navidad para cubiertos","$2.00", "5.0",
+                "https://img.ltwebstatic.com/origin/images2_pi/2018/09/28/15381070481435011005_im_405x552.jpg" ));
+        productos.add(new Producto("3", "Pegatinas", "pegatinas decorativas para cocina","$5.00", "3.3",
+                "https://img.ltwebstatic.com/origin/images2_pi/2018/09/26/15379542214115232479_im_405x552.jpg" ));*/
+        productos.add(new Producto("1", "Cafetera", "Keurig k55 Cafetera color negro","$85.50", "4.3",
+                "https://images-na.ssl-images-amazon.com/images/I/41zR9OmibVL._AC_US160_.jpg" ));
+        productos.add(new Producto("2", "Wafflera", "Presto 03510 Ceramic","$27.99", "4.3",
+                "https://images-na.ssl-images-amazon.com/images/I/51Zr0Y7t3tL._AC_US160_.jpg" ));
+        productos.add(new Producto("3", "NutriBullet Pro", "13-Piece High- Speed Blender","$79.99", "5.0",
+                "https://images-na.ssl-images-amazon.com/images/I/41cVtobFMBL._AC_US160_.jpg" ));
+       // productos.add(new Producto("7", "Plato de piña 8pcs", "Plato desechable en forma de piña","$5.00", "1.3",
+         //       "https://img.ltwebstatic.com/origin/images2_pi/2018/08/11/15339552932007217440_im_405x552.jpg" ));
+
+    }
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -93,18 +110,8 @@ public class CocinaFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

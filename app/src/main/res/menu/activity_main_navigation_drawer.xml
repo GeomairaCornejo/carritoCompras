@@ -5,19 +5,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_carrito"
             android:icon="@drawable/ic_shopping_cart_black_24dp"
             android:title="Mis Pedidos" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_cocina"
             android:icon="@drawable/ic_restaurant_black_24dp"
             android:title="Cocina" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_comedor"
             android:icon="@drawable/icons"
             android:title="Comedor" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_dormitorio"
             android:icon="@drawable/ic_local_hotel_black_24dp"
             android:title="Dormitorio" />
     </group>
