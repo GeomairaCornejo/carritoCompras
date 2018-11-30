@@ -7,24 +7,26 @@ public class Producto
     String detalle;
     double precio;
     double rating;
-    String image;
+   int image;
 
-    public Producto(String id, String title, String detalle, String precio, String rating, String image) {
-        id = id;
+    public Producto(int id, String title, String detalle, double precio, double rating, int image) {
+        this.id = id;
         this.title = title;
         this.detalle = detalle;
-        precio = precio;
-        rating = rating;
+        this.precio = precio;
+        this.rating = rating;
         this.image = image;
     }
 
-    public String getImage() {
+    public void setImage(int image) {
+        this.image = image;
+    }
+
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+
 
     public int getId() {
         return id;

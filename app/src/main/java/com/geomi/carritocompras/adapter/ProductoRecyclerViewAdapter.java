@@ -22,18 +22,18 @@ import java.util.List;
 
 
 public class ProductoRecyclerViewAdapter extends RecyclerView.Adapter<ProductoRecyclerViewAdapter.ViewHolder> {
-     ArrayList<Producto> productos;
+    List<Producto> productos;
     Context acontext;
 
 
-    public  ProductoRecyclerViewAdapter(Context context, ArrayList<Producto> productos){
+    public  ProductoRecyclerViewAdapter(Context context, List<Producto> productos){
         this.productos = productos;
         this.acontext= context;
     }
 
-    public ProductoRecyclerViewAdapter(ArrayList<Producto> productos) {
+    private Context getContext(){
+        return acontext;
     }
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -45,25 +45,15 @@ public class ProductoRecyclerViewAdapter extends RecyclerView.Adapter<ProductoRe
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Producto aproducto = productos.get(position);
-        holder.txtViewTittle.setText(aproducto.getTitle());
-        holder.txtViewDescr.setText(aproducto.getDetalle());
-        holder.txtViewPre.setText(String.valueOf(aproducto.getPrecio()));
-        holder.txtRating.setText(String.valueOf(aproducto.getRating()));
+        //final Producto aproducto = productos.get(position);
+       // Producto producto = productos.get(position);
+        holder.txtViewTittle.setText(productos.get(position).getTitle());
+        holder.txtViewDescr.setText(productos.get(position).getDetalle());
+        holder.txtViewPre.setText(String.valueOf(productos.get(position).getPrecio()));
+        holder.txtRating.setText(String.valueOf(productos.get(position).getRating()));
+        holder.image.setImageResource(productos.get(position).getImage());
 
-        if(aproducto.getImage().isEmpty()){
-            Picasso.with(acontext)
-                    .load(R.mipmap.ic_launcher)
-                    .placeholder(R.mipmap.ic_launcher)
-                    .error(R.mipmap.ic_launcher)
-                    .into(holder.image);
-        }else{
-            Picasso.with(acontext)
-                    .load(aproducto.getImage())
-                    .placeholder(R.drawable.notfound)
-                    .error(R.drawable.notfound)
-                    .into(holder.image);
-        }
+
 
     }
 
@@ -72,7 +62,7 @@ public class ProductoRecyclerViewAdapter extends RecyclerView.Adapter<ProductoRe
         return productos.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
        // View rootView;
         ImageView image;
         TextView txtViewTittle;
@@ -83,12 +73,21 @@ public class ProductoRecyclerViewAdapter extends RecyclerView.Adapter<ProductoRe
        ViewHolder( View view) {
             super(view);
             //rootView = view;
-            image = (ImageView) view.findViewById(R.id.Imagen);
-           txtViewTittle= (TextView) view.findViewById(R.id.txtTitulo);
+           image = view.findViewById(R.id.Imagen);
+           txtViewTittle=  view.findViewById(R.id.txtTitulo);
            txtRating = view.findViewById(R.id.myRatingBar);
-           txtViewDescr= (TextView) view.findViewById(R.id.txtDetalle);
-           txtViewPre= (TextView) view.findViewById(R.id.txtPrecio);
+           txtViewDescr=  view.findViewById(R.id.txtDetalle);
+           txtViewPre=  view.findViewById(R.id.txtPrecio);
+           //view.setOnClickListener(this);
 
         }
+
+       /* @Override
+        public void onClick(View v) {
+            Producto producto = productos.get(getAdapterPosition());
+            Intent intent = new Intent(getContext(), Producto.class);
+            //intent.putExtra("PRODUCTO", (Parcelable) producto);
+            getContext().startActivity(intent);
+        }*/
     }
 }

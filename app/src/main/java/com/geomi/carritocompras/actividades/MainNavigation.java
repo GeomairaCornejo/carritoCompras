@@ -25,10 +25,10 @@ import com.geomi.carritocompras.fragments.DormitorioFragment;
 public class MainNavigation extends AppCompatActivity
         implements NavigationView.
         OnNavigationItemSelectedListener
-        , CocinaFragment.OnFragmentInteractionListener
-        , ComedorFragment.OnFragmentInteractionListener
-        , DormitorioFragment.OnFragmentInteractionListener
-        ,CarritoFragment.OnFragmentInteractionListener
+       // , CocinaFragment.OnFragmentInteractionListener
+        // , ComedorFragment.OnFragmentInteractionListener
+        //, DormitorioFragment.OnFragmentInteractionListener
+        //,CarritoFragment.OnFragmentInteractionListener
 {
 
     @Override
@@ -73,7 +73,7 @@ public class MainNavigation extends AppCompatActivity
             e.printStackTrace();
         }
         FragmentManager fragmentManager= getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_cocina, fragment)
+        fragmentManager.beginTransaction().replace(R.id.frContent, fragment)
                 .commit();
     }
 
@@ -117,17 +117,17 @@ public class MainNavigation extends AppCompatActivity
         Class fragment = null;
 
 
-        if (id == R.id.nav_carrito) {
+        if (id == R.id.Frcarrito) {
             fragment = CarritoFragment.class;
             showFragment(fragment);
             // Handle the camera action
-        } else if (id == R.id.nav_cocina) {
+        } else if (id == R.id.cocina) {
             fragment = CocinaFragment.class;
             showFragment(fragment);
-        } else if (id == R.id.nav_comedor) {
+        } else if (id == R.id.frComedor) {
             fragment = ComedorFragment.class;
             showFragment(fragment);
-        } else if (id == R.id.nav_dormitorio) {
+        } else if (id == R.id.dormi) {
             fragment = DormitorioFragment.class;
             showFragment(fragment);
         } else if (id == R.id.nav_share) {
@@ -144,8 +144,8 @@ public class MainNavigation extends AppCompatActivity
         return true;
     }
 
-    @Override
+   /* @Override
     public void onFragmentInteraction(Uri uri) {
 
-    }
+    }*/
 }
